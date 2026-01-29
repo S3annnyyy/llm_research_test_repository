@@ -8,7 +8,11 @@ public class WeatherDataManager {
 
     public static WeatherDataManager getInstance() {
         if (instance == null) {
-            instance = new WeatherDataManager();
+            synchronized (WeatherDataManager.class) {
+                if (instance == null) {
+                    instance = new WeatherDataManager();
+                }
+            }
         }
         return instance;
     }
